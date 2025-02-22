@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ObjectId, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
-
 const app = express();
 app.use(express.json());
 const port = process.env.PORT || 5000;
@@ -26,10 +25,8 @@ async function connectDB() {
   } catch (error) {
     // console.error(" MongoDB Connection Error:", error);
   }
-}
-connectDB();
+}connectDB();
 
-// 🟢 Add Task
 app.post("/tasks", async (req, res) => {
   try {
     const task = { ...req.body, timestamp: new Date() };
@@ -49,7 +46,6 @@ app.get("/tasks", async (req, res) => {
   }
 });
 
-// 🟡 Update Task
 app.put("/tasks/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -78,4 +74,4 @@ app.get('/', (req, res) => {
   res.send('Server is working properly');
 });
 
-app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));
